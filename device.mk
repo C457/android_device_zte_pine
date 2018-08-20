@@ -158,7 +158,7 @@ PRODUCT_PACKAGES_DEBUG += \
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.msmnile \
     libcutils \
-    libgptutils \
+    libgptutils.pine.recovery \
     libz
 
 # Bluetooth
