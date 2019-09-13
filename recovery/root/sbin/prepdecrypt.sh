@@ -35,17 +35,16 @@ if [ -z "$suffix" ]; then
 	suf=$(getprop ro.boot.slot)
 	suffix="_$suf"
 fi
-venpath="/dev/block/bootdevice/by-name/vendor_a"
+venpath="/dev/block/bootdevice/by-name/vendor$suffix"
 mkdir /v
 mount -t ext4 -o ro "$venpath" /v
-syspath="/dev/block/bootdevice/by-name/system_a"
+syspath="/dev/block/bootdevice/by-name/system$suffix"
 mkdir /s
 mount -t ext4 -o ro "$syspath" /s
 mount /s/system /system
 psyspath="dev/block/bootdevice/by-name/persist"
 mkdir /p
 mount -t ext4 -o rw "$psyspath" /p
-mount /p
 
 device_codename=$(getprop ro.boot.hardware)
 is_fastboot_twrp=$(getprop ro.boot.fastboot)
@@ -109,7 +108,6 @@ cp /v/lib64/vendor.qti.hardware.tui_comm@1.0.so /vendor/lib64/
 cp /v/lib64/hw/bootctrl.sdm845.so /vendor/lib64/hw/
 cp /v/lib64/hw/android.hardware.boot@1.0-impl.so /vendor/lib64/hw/
 cp /v/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so /vendor/lib64/hw/
-cp /v/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so /vendor/lib64/hw/
 
 cp /v/manifest.xml /vendor/
 cp /v/compatibility_matrix.xml /vendor/
