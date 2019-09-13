@@ -133,3 +133,4 @@ TW_NO_HAPTICS := true
 TARGET_RECOVERY_DEVICE_MODULES := android.hardware.boot@1.0
 TW_HAS_EDL_MODE := true
 TW_EXCLUDE_TWRPAPP := true
+TW_NO_USB_STORAGE := true
