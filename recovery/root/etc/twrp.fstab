@@ -7,6 +7,7 @@
 /metadata	ext4	/dev/block/bootdevice/by-name/metadata
 /data		f2fs	/dev/block/bootdevice/by-name/userdata					flags=fileencryption=ice:aes-256-cts;keydirectory=/metadata/vold/metadata_encryption
 /firmware	vfat	/dev/block/bootdevice/by-name/modem					flags=slotselect;display="Firmware";mounttodecrypt;fsflags=ro
+/dtbo		emmc	/dev/block/bootdevice/by-name/dtbo					flags=slotselect;backup=1
 /misc		emmc	/dev/block/bootdevice/by-name/misc
 /modem		emmc	/dev/block/bootdevice/by-name/modem					flags=slotselect;backup=1;display="Modem"
 /bluetooth	emmc	/dev/block/bootdevice/by-name/bluetooth					flags=slotselect;backup=1;subpartitionof=/modem
