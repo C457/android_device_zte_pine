@@ -1,0 +1,3 @@
+attribute hal_wiredse;
+attribute hal_wiredse_client;
+attribute hal_wiredse_server;

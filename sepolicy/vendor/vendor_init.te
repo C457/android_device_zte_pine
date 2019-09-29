@@ -1,0 +1,2 @@
+# Allow vendor_init to set vendor_disable_spu_prop
+set_prop(vendor_init, vendor_disable_spu_prop)

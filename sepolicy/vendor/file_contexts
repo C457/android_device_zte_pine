@@ -1,0 +1,10 @@
+# Binaries
+/(vendor|system/vendor)/bin/remosaic_daemon    u:object_r:remosaic_daemon_exec:s0
+
+# Devices
+/dev/pn5xx         u:object_r:nfc_device:s0
+/dev/goodix_fp*    u:object_r:gx_fpd_device:s0
+
+# HALs
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service\.pine    u:object_r:hal_power_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.hardware\.zte\.wifi@1\.0-service       u:object_r:hal_wifi_default_exec:s0

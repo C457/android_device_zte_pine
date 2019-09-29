@@ -179,35 +179,23 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_late.sh \
     init.class_main.sh \
-    init.crda.sh \
     init.fingerprint.gf95xx.rc \
     init.mdm.sh \
-    init.mlvm_boot.rc \
-    init.mlvm_boot.sh \
     init.msm.usb.configfs.rc \
     init.pine.rc \
     init.qcom.class_core.sh \
-    init.qcom.crashdata.sh \
     init.qcom.early_boot.sh \
-    init.qcom.factory.rc \
     init.qcom.fingerid.sh \
     init.qcom.post_boot.sh \
     init.qcom.rc \
-    init.qcom.sdio.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
-    init.qti.can.sh \
-    init.qti.fm.rc \
-    init.qti.fm.sh \
-    init.qti.manifest_sku.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.vendor.rc \
-    init.vendor.sh \
     init.vendor.usb.rc \
-    manifest_sku.rc \
     ueventd.rc
 
 # Display

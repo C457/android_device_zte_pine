@@ -1,0 +1,1 @@
+genfscon proc /touchscreen    u:object_r:proc_touchscreen:s0

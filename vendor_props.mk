@@ -89,10 +89,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.enable_default_color_mode=1 \
     vendor.display.enable_optimize_refresh=1
 
-# DPM
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.dpm.feature=7
-
 # Fingerprint
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.feature.zte_fingerprint_default_goodix_gf95xx=1
@@ -104,10 +100,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Gatekeeper
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
-
-# GPS
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.backup.ntpServer=0.pool.ntp.org
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
