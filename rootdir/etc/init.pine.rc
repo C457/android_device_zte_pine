@@ -1,0 +1,5 @@
+on boot
+
+    # Wake gesture
+    chown system radio /proc/touchscreen/wake_gesture
+    chmod 0660 /proc/touchscreen/wake_gesture

@@ -27,6 +27,8 @@
 #
 #
 
+import /vendor/etc/init/hw/init.pine.rc
+
 on early-init
     write /proc/sys/kernel/sched_boost 1
     symlink /data/tombstones /tombstones

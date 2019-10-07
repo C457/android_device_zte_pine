@@ -185,6 +185,7 @@ PRODUCT_PACKAGES += \
     init.mlvm_boot.rc \
     init.mlvm_boot.sh \
     init.msm.usb.configfs.rc \
+    init.pine.rc \
     init.qcom.class_core.sh \
     init.qcom.crashdata.sh \
     init.qcom.early_boot.sh \

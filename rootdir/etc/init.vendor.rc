@@ -417,8 +417,8 @@ on property:sys.boot_completed=1
     start fs_reserve
 
 #touchscreen wakeup gesture function
-on property:sys.boot_completed=1
-     write /proc/touchscreen/wake_gesture ${persist.ts.blackscreen}
+#on property:sys.boot_completed=1
+#     write /proc/touchscreen/wake_gesture ${persist.ts.blackscreen}
 
 #FTM stop surfaceflinger
 on property:ro.boot.mode=ffbm-99
