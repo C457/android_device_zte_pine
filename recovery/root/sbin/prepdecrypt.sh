@@ -10,7 +10,6 @@ relink()
 
 finish()
 {
-	exit 0
 	umount /v
 	umount /s
 	rmdir /v
