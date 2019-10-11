@@ -10,24 +10,14 @@ relink()
 
 finish()
 {
-	grablog
 	exit 0
 	umount /v
 	umount /s
-        umount /p
 	rmdir /v
 	rmdir /s
-        rmdir /p
 	setprop crypto.ready 1
 	setprop prep.decrypt 1
 	exit 0
-}
-
-grablog()
-{
-        mkdir -p /p/twrp/
-	cp /tmp/recovery.log /p/twrp/
-        dmesg > /p/twrp/dmesg_twrp.txt
 }
 
 suffix=$(getprop ro.boot.slot_suffix)
@@ -42,9 +32,6 @@ syspath="/dev/block/bootdevice/by-name/system$suffix"
 mkdir /s
 mount -t ext4 -o ro "$syspath" /s
 mount /s/system /system
-psyspath="dev/block/bootdevice/by-name/persist"
-mkdir /p
-mount -t ext4 -o rw "$psyspath" /p
 
 device_codename=$(getprop ro.boot.hardware)
 is_fastboot_twrp=$(getprop ro.boot.fastboot)
