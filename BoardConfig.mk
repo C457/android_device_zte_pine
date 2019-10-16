@@ -163,7 +163,7 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2019-09-01
+VENDOR_SECURITY_PATCH := 2018-08-05
 
 # Sepolicy
 include device/qcom/sepolicy/sepolicy.mk
