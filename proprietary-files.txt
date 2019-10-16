@@ -690,7 +690,7 @@ lib64/vendor.qti.gnss@1.1.so
 lib64/vendor.qti.gnss@1.2.so
 lib64/vendor.qti.gnss@2.0.so
 lib64/vendor.qti.gnss@2.1.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk|419c194d23324c3ae38cab8a1f605e99e29d357d
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk|75884fdd028f1bbc2b5da16d2db78f4433ae2e50
 vendor/bin/hw/vendor.qti.gnss@2.1-service
 vendor/bin/garden_app
 vendor/bin/loc_launcher
@@ -959,7 +959,7 @@ vendor/etc/init/android.hardware.neuralnetworks@1.1-service-qti.rc
 vendor/lib64/libhexagon_nn_stub.so
 
 # NFC
--app/NfcNci_zte/NfcNci_zte.apk|c41200e88115450415993d7e9950d60fcc8d9542
+-app/NfcNci_zte/NfcNci_zte.apk|114d986a6b36e574cd91b01f251ade3c5786ecfe
 etc/nfcee_access.xml
 etc/permissions/com.nxp.nfc.xml
 framework/com.nxp.nfc.jar
@@ -1079,7 +1079,7 @@ etc/permissions/telephonyservice.xml
 etc/sysconfig/qti_whitelist.xml
 framework/embmslibrary.jar
 framework/qcrilhook.jar
-framework/qti-telephony-common.jar|14f6bdcdd02adef55e1b2b7d10fd67c691beea13
+framework/qti-telephony-common.jar|dbd03de2e503b815d10c4f41f12a9b6b32e6282e
 framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/hw/qcrild
