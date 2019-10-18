@@ -29,17 +29,16 @@ $(call inherit-product, device/zte/pine/device.mk)
 PRODUCT_DEVICE := pine
 PRODUCT_NAME := lineage_pine
 PRODUCT_BRAND := ZTE
-PRODUCT_MODEL := ZTE A2020G Pro
+PRODUCT_MODEL := ZTE A2020U Pro
 PRODUCT_MANUFACTURER := ZTE
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=GEN_EU_EEA_P855A01 \
-    BUILD_PRODUCT=P855A01 \
-    TARGET_DEVICE=P855A01
+    PRODUCT_NAME=P855A03_NA \
+    TARGET_DEVICE=P855A03_NA
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.bootimage.build.date.utc \
     ro.build.date.utc
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.build.security_patch=2099-12-31
+    ro.vendor.build.security_patch=2099-12-31
