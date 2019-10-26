@@ -35,6 +35,9 @@ on fs
     chown system system /dev/ion
     install_keyring
 
+on early-fs
+    start vold
+
 # Separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
 service sbinqseecomd /sbin/qseecomd
     user root
@@ -106,12 +109,17 @@ service time_daemon /sbin/time_daemon
     disabled
     seclabel u:r:recovery:s0
 
+# This helps fix ld.config.txt errors from the linker on Android 8.1+
+service ldconfigtxt /sbin/touch /sbin/ld.config.txt
+    oneshot
+    seclabel u:r:recovery:s0
+
 on boot
+	export LD_CONFIG_FILE /sbin/ld.config.txt
     setprop sys.usb.config adb
     write /proc/touchscreen/wake_gesture 1
 
 on init
-    export LD_CONFIG_FILE /sbin/ld.config.txt
     start logd
     start hwservicemanager
     start boot-1-0

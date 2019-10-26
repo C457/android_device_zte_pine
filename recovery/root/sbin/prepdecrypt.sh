@@ -15,7 +15,6 @@ finish()
 	rmdir /v
 	rmdir /s
 	setprop crypto.ready 1
-	setprop prep.decrypt 1
 	exit 0
 }
 
@@ -30,7 +29,6 @@ mount -t ext4 -o ro "$venpath" /v
 syspath="/dev/block/bootdevice/by-name/system$suffix"
 mkdir /s
 mount -t ext4 -o ro "$syspath" /s
-mount /s/system /system
 
 device_codename=$(getprop ro.boot.hardware)
 is_fastboot_twrp=$(getprop ro.boot.fastboot)
