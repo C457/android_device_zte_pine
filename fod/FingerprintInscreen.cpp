@@ -21,9 +21,9 @@
 #include <android-base/logging.h>
 #include <fstream>
 
-#define FOD_SENSOR_X 0
-#define FOD_SENSOR_Y 0
-#define FOD_SENSOR_SIZE 0
+#define FOD_SENSOR_X 540
+#define FOD_SENSOR_Y 2017
+#define FOD_SENSOR_SIZE 216
 
 namespace {
 
