@@ -44,6 +44,7 @@ namespace V1_0 {
 namespace implementation {
 
 FingerprintInscreen::FingerprintInscreen() {
+    zteFingerprintService = IZteFingerprint::getService();
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
