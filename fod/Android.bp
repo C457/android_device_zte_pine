@@ -32,5 +32,6 @@ cc_binary {
         "libhwbinder",
         "libutils",
         "vendor.lineage.biometrics.fingerprint.inscreen@1.0",
+        "vendor.zte.hardware.fingerprintextension@1.0",
     ],
 }
