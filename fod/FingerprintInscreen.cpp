@@ -21,6 +21,14 @@
 #include <android-base/logging.h>
 #include <fstream>
 
+#define CMD_CAPTURE 10
+#define PARAM_START 1
+#define PARAM_STOP 0
+
+#define FOD_HBM_PATH "/proc/driver/lcd_hbm"
+#define FOD_HBM_ON 1
+#define FOD_HBM_OFF 0
+
 #define FOD_SENSOR_X 540
 #define FOD_SENSOR_Y 2017
 #define FOD_SENSOR_SIZE 216
@@ -68,10 +76,14 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
+    set(FOD_HBM_PATH, FOD_HBM_ON);
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, LOG_TAG);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    set(FOD_HBM_PATH, FOD_HBM_OFF);
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
     return Void();
 }
 
@@ -80,6 +92,8 @@ Return<void> FingerprintInscreen::onShowFODView() {
 }
 
 Return<void> FingerprintInscreen::onHideFODView() {
+    set(FOD_HBM_PATH, FOD_HBM_OFF);
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
     return Void();
 }
 
