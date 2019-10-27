@@ -1,0 +1,7 @@
+on boot
+service fingerprint-inscreen-1-0 /vendor/bin/hw/vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.zte_pine
+    interface vendor.lineage.biometrics.fingerprint.inscreen@1.0::IFingerprintInscreen default
+    class hal
+    user system
+    group system
+    shutdown critical

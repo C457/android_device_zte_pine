@@ -235,6 +235,13 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service \
     android.hardware.biometrics.fingerprint@2.1-service.rc
 
+# Fingerprint On(Under) Display
+PRODUCT_PACKAGES += \
+    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.zte_pine
+
+PRODUCT_COPY_FILES += \
+    vendor/lineage/config/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml
+
 # For config.fs
 PRODUCT_PACKAGES += \
     fs_config_files
