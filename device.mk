@@ -179,13 +179,11 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_late.sh \
     init.class_main.sh \
-    init.fingerprint.gf95xx.rc \
     init.mdm.sh \
     init.msm.usb.configfs.rc \
     init.pine.rc \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
-    init.qcom.fingerid.sh \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sensors.sh \
@@ -223,6 +221,11 @@ PRODUCT_PACKAGES += \
 # Exclude vibrator from InputManager
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service \
+    android.hardware.biometrics.fingerprint@2.1-service.rc
 
 # For config.fs
 PRODUCT_PACKAGES += \
