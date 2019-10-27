@@ -1,0 +1,17 @@
+package vendor.zte.hardware.fingerprintextension@1.0;
+
+interface IZteFingerprint {
+  /**
+   * Call a fingerprint extension command.
+   *
+   * @param cmd the command to run, 10 to start or stop capture.
+   * @param param1 a parameter for the command; in case of command
+   * 10, 0 will disable the capture and 10, 1 will enable.
+   * @param param2 seems to always be 0 in all cases?
+   * @param containerName the name of the service running the cmd.
+   *
+   * @return result the result of the operation.
+   */
+  zteCmd(int32_t cmd, int32_t param1, int32_t param2, string containerName)
+     generates (int32_t result);
+};
