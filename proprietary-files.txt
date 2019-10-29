@@ -1087,6 +1087,7 @@ vendor/bin/adpl
 vendor/bin/ATFWD-daemon
 vendor/bin/diag_mdlog
 vendor/bin/ipacm-diag
+vendor/bin/mdm_helper
 vendor/bin/netmgrd
 vendor/bin/port-bridge
 vendor/bin/qrtr-cfg
@@ -1104,6 +1105,7 @@ vendor/lib64/libconfigdb.so
 vendor/lib64/libdsi_netctrl.so
 vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
+vendor/lib64/libmdmimgload.so
 vendor/lib64/libmodemapi_vendor.so
 vendor/lib64/libnetmgr.so
 vendor/lib64/libnetmgr_common.so
