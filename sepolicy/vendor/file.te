@@ -1,5 +1,2 @@
-# Data files
-type vendor_goodix_gf_data_file, data_file_type, file_type;
-
 # Proc
 type proc_touchscreen, fs_type, proc_type;
