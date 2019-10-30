@@ -7,10 +7,13 @@ vendor.dts.audio.        u:object_r:vendor_audio_prop:s0
 persist.camera.          u:object_r:vendor_camera_prop:s0
 ro.camera.               u:object_r:vendor_camera_prop:s0
 
+# Fingerprint
+gf.debug.dump_talog_data    u:object_r:vendor_fingerprint_prop:s0
+
 # NFC
-persist.nfc.             u:object_r:vendor_nfc_prop:s0
+persist.nfc.                u:object_r:vendor_nfc_prop:s0
 
 # RIL
-persist.carrier.           u:object_r:vendor_radio_prop:s0
-ro.build.software.version  u:object_r:qcom_ims_prop:s0
-ro.carrier.openmarket      u:object_r:vendor_radio_prop:s0
+persist.carrier.            u:object_r:vendor_radio_prop:s0
+ro.build.software.version   u:object_r:qcom_ims_prop:s0
+ro.carrier.openmarket       u:object_r:vendor_radio_prop:s0

@@ -4,6 +4,10 @@ on boot
     chown system radio /proc/touchscreen/wake_gesture
     chmod 0660 /proc/touchscreen/wake_gesture
 
+    # High brightness mode
+    chmod 0666 /proc/driver/lcd_hbm
+    chown system system /proc/driver/lcd_hbm
+
 on post-fs-data
 
     # DTS

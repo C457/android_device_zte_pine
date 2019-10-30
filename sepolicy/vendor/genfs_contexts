@@ -1,4 +1,5 @@
-genfscon proc /touchscreen                                                                                                     u:object_r:proc_touchscreen:s0
+genfscon proc  /driver/lcd_hbm                                                                                                 u:object_r:proc_hbm:s0
+genfscon proc  /touchscreen                                                                                                    u:object_r:proc_touchscreen:s0
 genfscon sysfs /devices/platform/soc/890000.i2c/i2c-0/0-0061/power_supply/wireless                                             u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/platform/soc/soc:batt_cap_learn/power_supply/bcl                                                       u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/platform/soc/soc:charge_arbitrate_service/power_supply/cas                                             u:object_r:sysfs_batteryinfo:s0

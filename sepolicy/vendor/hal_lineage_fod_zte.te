@@ -1,0 +1,17 @@
+type hal_lineage_fod_zte, domain;
+hal_server_domain(hal_lineage_fod_zte, hal_lineage_fod)
+
+type hal_lineage_fod_zte_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_lineage_fod_zte)
+
+# Allow access to the HALs
+hal_client_domain(hal_lineage_fod_zte, hal_fingerprint)
+
+# Allow binder communication with hal_fingerprint_default
+binder_call(hal_lineage_fod_zte, hal_fingerprint_default)
+
+# Allow hal_lineage_fod_zte to hal_fingerprint_hwservice
+allow hal_lineage_fod_zte hal_fingerprint_hwservice:hwservice_manager find;
+
+# Allow hal_lineage_fod_zte to read and write to proc_hbm
+allow hal_lineage_fod_zte proc_hbm:file rw_file_perms;
