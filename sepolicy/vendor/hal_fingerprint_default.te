@@ -1,0 +1,5 @@
+# Allow hal_fingerprint_default to read and write to gx_fpd_device
+allow hal_fingerprint_default gx_fpd_device:chr_file { ioctl read write open };
+
+# Allow hal_fingerprint_default to read and write to tee_device
+allow hal_fingerprint_default tee_device:chr_file { ioctl read write open };
