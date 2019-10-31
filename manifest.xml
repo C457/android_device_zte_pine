@@ -801,15 +801,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.zte.hardware.fingerprintextension</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IZteFingerprint</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>vendor.zte.hardware.radio</name>
         <transport>hwbinder</transport>
         <version>1.0</version>

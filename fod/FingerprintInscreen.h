@@ -17,8 +17,8 @@
 #ifndef VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
 #define VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
 
+#include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
 #include <vendor/lineage/biometrics/fingerprint/inscreen/1.0/IFingerprintInscreen.h>
-#include <vendor/zte/hardware/fingerprintextension/1.0/IZteFingerprint.h>
 
 namespace vendor {
 namespace lineage {
@@ -29,9 +29,9 @@ namespace V1_0 {
 namespace implementation {
 
 using ::android::sp;
+using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::vendor::zte::hardware::fingerprintextension::V1_0::IZteFingerprint;
 
 class FingerprintInscreen : public IFingerprintInscreen {
 public:
@@ -53,7 +53,8 @@ public:
     Return<void> setCallback(const sp<::vendor::lineage::biometrics::fingerprint::inscreen::V1_0::IFingerprintInscreenCallback>& callback) override;
 
 private:
-    sp<IZteFingerprint> zteFingerprintService;
+    static Return<uint32_t> zteCmd(uint32_t cmd, uint32_t param1, uint32_t param2, const hidl_string& containerName);
+    sp<IBiometricsFingerprint> zteFingerprintService;
 };
 
 }  // namespace implementation

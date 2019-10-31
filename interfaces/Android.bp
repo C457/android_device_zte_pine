@@ -1,4 +1,0 @@
-hidl_package_root {
-    name: "vendor.zte",
-    path: "device/zte/pine/interfaces",
-}

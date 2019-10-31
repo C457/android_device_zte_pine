@@ -52,7 +52,7 @@ namespace V1_0 {
 namespace implementation {
 
 FingerprintInscreen::FingerprintInscreen() {
-    this->zteFingerprintService = IZteFingerprint::getService();
+    this->zteFingerprintService = IBiometricsFingerprint::getService();
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
@@ -77,13 +77,13 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 
 Return<void> FingerprintInscreen::onPress() {
     set(FOD_HBM_PATH, FOD_HBM_ON);
-    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, LOG_TAG);
+    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, "FpInscreenService");
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
     set(FOD_HBM_PATH, FOD_HBM_OFF);
-    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
+    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, "FpInscreenService");
     return Void();
 }
 
@@ -93,7 +93,7 @@ Return<void> FingerprintInscreen::onShowFODView() {
 
 Return<void> FingerprintInscreen::onHideFODView() {
     set(FOD_HBM_PATH, FOD_HBM_OFF);
-    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
+    this->zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, "FpInscreenService");
     return Void();
 }
 

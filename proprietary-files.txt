@@ -662,6 +662,10 @@ vendor/lib64/hw/vendor.qti.esepowermanager@1.0-impl.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 
 # Fingerprint
+lib/android.hardware.biometrics.fingerprint@2.1.so
+lib/vndk-28/android.hardware.biometrics.fingerprint@2.1.so
+lib64/android.hardware.biometrics.fingerprint@2.1.so
+lib64/vndk-28/android.hardware.biometrics.fingerprint@2.1.so
 vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
 vendor/lib64/hw/fingerprint.gf95xx.so:vendor/lib64/hw/fingerprint.msmnile.so
 vendor/lib64/libgf_hal.so
