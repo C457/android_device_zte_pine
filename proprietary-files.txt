@@ -62,8 +62,8 @@ vendor/lib/com.qualcomm.qti.ant@1.0.so
 vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so
 vendor/lib64/com.qualcomm.qti.ant@1.0.so
 
-# Audio
-#-app/DtsUltra/DtsUltra.apk
+# Audio - from stock patched to work in AOSP
+-app/DtsUltra/DtsUltra.apk|b59259f8bf78a904b680dea5e1fc40449b1f161d
 vendor/lib/hw/audio.primary.msmnile.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
