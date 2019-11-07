@@ -3,7 +3,8 @@ bt.max.hfpclient.connections=1
 vendor.bluetooth.soc=cherokee
 
 # Camera
-vendor.camera.aux.packagelist=com.zte.camera,com.zte.burntest.camera,org.codeaurora.snapcam
+persist.camera.expose.aux=1
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,org.lineageos.snap
 
 # CNE
 persist.vendor.cne.feature=1
