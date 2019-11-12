@@ -18,6 +18,7 @@
 
 #include <android/log.h>
 #include <hidl/HidlTransportSupport.h>
+#include <vendor/zte/hardware/fingerprintextension/1.0/IZteFingerprint.h>
 
 #include "BiometricsFingerprint.h"
 
@@ -28,14 +29,24 @@ using android::hardware::joinRpcThreadpool;
 // Generated HIDL files
 using android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint;
 using android::hardware::biometrics::fingerprint::V2_1::implementation::BiometricsFingerprint;
+using ::vendor::zte::hardware::fingerprintextension::V1_0::IZteFingerprint;
 
 int main() {
     android::sp<IBiometricsFingerprint> bio = BiometricsFingerprint::getInstance();
+    android::sp<IZteFingerprint> zte = BiometricsFingerprint::getInstanceZte();
 
     configureRpcThreadpool(1, true /*callerWillJoin*/);
 
     if (bio != nullptr) {
         if (::android::OK != bio->registerAsService()) {
+            return 1;
+        }
+    } else {
+        ALOGE("Can't create instance of BiometricsFingerprint, nullptr");
+    }
+
+    if (zte != nullptr) {
+        if (::android::OK != zte->registerAsService()) {
             return 1;
         }
     } else {

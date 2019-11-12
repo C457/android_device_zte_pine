@@ -24,5 +24,7 @@ LOCAL_SRC_FILES := BiometricsFingerprint.cpp service.cpp
 
 LOCAL_SHARED_LIBRARIES := libcutils liblog libhidlbase libhidltransport \
     libhardware libutils android.hardware.biometrics.fingerprint@2.1 \
+    vendor.zte.hardware.fingerprintextension@1.0
+LOCAL_C_INCLUDES := $(TARGET_SPECIFIC_HEADER_PATH)
 
 include $(BUILD_EXECUTABLE)
