@@ -204,7 +204,24 @@ Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId,
     return ErrorFilter(mDevice->authenticate(mDevice, operationId, gid));
 }
 
+Return<uint32_t> BiometricsFingerprint::zteCmd(uint32_t cmd, uint32_t param1, uint32_t param2, const hidl_string& containerName) {
+    const char* systemName = containerName.c_str();
+    ALOGD("start zteCmd { cmd:%d, param1:%d, param2:%d, containerName:%s }", cmd, param1, param2, systemName);
+#ifdef ZTE_FINGERPRINT_CMD
+    return mDevice->zteCmd(mDevice, cmd, param1, param2, containerName.c_str());
+#else
+    return  0;
+#endif
+}
+
 IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
+    if (!sInstance) {
+      sInstance = new BiometricsFingerprint();
+    }
+    return sInstance;
+}
+
+IZteFingerprint* BiometricsFingerprint::getInstanceZte() {
     if (!sInstance) {
       sInstance = new BiometricsFingerprint();
     }

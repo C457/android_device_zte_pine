@@ -17,6 +17,10 @@
 #ifndef ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_1_BIOMETRICSFINGERPRINT_H
 #define ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_1_BIOMETRICSFINGERPRINT_H
 
+#ifndef ZTE_FINGERPRINT_CMD
+#define ZTE_FINGERPRINT_CMD 1
+#endif
+
 #include <log/log.h>
 #include <android/log.h>
 #include <hardware/hardware.h>
@@ -24,6 +28,7 @@
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
+#include <vendor/zte/hardware/fingerprintextension/1.0/IZteFingerprint.h>
 
 namespace android {
 namespace hardware {
@@ -40,14 +45,16 @@ using ::android::hardware::Void;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::hidl_string;
 using ::android::sp;
+using ::vendor::zte::hardware::fingerprintextension::V1_0::IZteFingerprint;
 
-struct BiometricsFingerprint : public IBiometricsFingerprint {
+struct BiometricsFingerprint : public IBiometricsFingerprint, public IZteFingerprint {
 public:
     BiometricsFingerprint();
     ~BiometricsFingerprint();
 
     // Method to wrap legacy HAL with BiometricsFingerprint class
     static IBiometricsFingerprint* getInstance();
+    static IZteFingerprint* getInstanceZte();
 
     // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint follow.
     Return<uint64_t> setNotify(const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
@@ -60,6 +67,7 @@ public:
     Return<RequestStatus> remove(uint32_t gid, uint32_t fid) override;
     Return<RequestStatus> setActiveGroup(uint32_t gid, const hidl_string& storePath) override;
     Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;
+    Return<uint32_t> zteCmd(uint32_t cmd, uint32_t param1, uint32_t param2, const hidl_string& containerName) override;
 
 private:
     static fingerprint_device_t* openHal();
