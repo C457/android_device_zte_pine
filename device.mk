@@ -232,8 +232,7 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service \
-    android.hardware.biometrics.fingerprint@2.1-service.rc
+    android.hardware.biometrics.fingerprint@2.1-service.pine
 
 # Fingerprint On(Under) Display
 PRODUCT_PACKAGES += \

@@ -1,12 +1,8 @@
-#
-# Goodix fingerprint
-#
 on fs
-    #goodix fingerprint
+    # Goodix fingerprint
     chown system system /dev/goodix_fp
-    #goodix fingerprint end
 
-service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
+service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.pine
     # "class hal" causes a race condition on some devices due to files created
     # in /data. As a workaround, postpone startup until later in boot once
     # /data is mounted.
