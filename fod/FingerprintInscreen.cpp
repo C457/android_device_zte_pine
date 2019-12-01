@@ -29,9 +29,9 @@
 #define FOD_HBM_ON 1
 #define FOD_HBM_OFF 0
 
-#define FOD_SENSOR_X 540
-#define FOD_SENSOR_Y 2017
-#define FOD_SENSOR_SIZE 216
+#define FOD_SENSOR_X 455
+#define FOD_SENSOR_Y 1920
+#define FOD_SENSOR_SIZE 173
 
 namespace {
 
@@ -68,26 +68,27 @@ Return<int32_t> FingerprintInscreen::getSize() {
 }
 
 Return<void> FingerprintInscreen::onStartEnroll() {
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, LOG_TAG);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onFinishEnroll() {
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onPress() {
     set(FOD_HBM_PATH, FOD_HBM_ON);
-    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, LOG_TAG);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
     set(FOD_HBM_PATH, FOD_HBM_OFF);
-    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_STOP, 0, LOG_TAG);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
+    zteFingerprintService->zteCmd(CMD_CAPTURE, PARAM_START, 0, LOG_TAG);
     return Void();
 }
 
