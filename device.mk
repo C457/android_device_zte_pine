@@ -171,6 +171,11 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service_64 \
     Snap
 
+# Charger
+PRODUCT_PACKAGES += \
+    ztecharger \
+    ztecharger_fonts
+
 # CNE
 PRODUCT_PACKAGES += \
     cneapiclient \

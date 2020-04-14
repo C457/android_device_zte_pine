@@ -172,3 +172,20 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := ueventd.rc
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)
 include $(BUILD_PREBUILT)
+
+# ZTE Charger
+include $(CLEAR_VARS)
+LOCAL_MODULE       := ztecharger
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := ztecharger
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT_SBIN)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := ztecharger_fonts
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := ztecharger_res/fonts.ttf
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)/res/images/charger
+include $(BUILD_PREBUILT)

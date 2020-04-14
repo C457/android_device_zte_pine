@@ -1,3 +1,6 @@
+on post-fs
+    mkdir /cache/time 0770 system system
+
 on boot
 
     # Wake gesture
@@ -16,3 +19,30 @@ on post-fs-data
     setprop ro.vendor.dts.licensepath "/vendor/etc/dts/"
     setprop ro.vendor.dts.cfgpath "/vendor/etc/dts/"
     setprop vendor.dts.audio.allow_offload true
+
+on charger
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Mount cache
+    wait /dev/block/bootdevice/by-name/cache
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache noatime nosuid nodev barrier=1
+
+    # Mount persist
+    mkdir /mnt/vendor/persist 0755 system system
+
+    wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist noatime nosuid nodev barrier=1
+    class_start ztecharger
+
+service charger /sbin/ztecharger
+    class ztecharger
+    user root
+    group root system log
+    seclabel u:r:healthd:s0
+
+service ztecharger_time_daemon /vendor/bin/time_daemon
+    class ztecharger
+    user system
+    group system
+    capabilities SYS_TIME
