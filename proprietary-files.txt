@@ -147,7 +147,6 @@ vendor/etc/dts/current_usb44k
 vendor/etc/dts/current_usb48k
 vendor/etc/dts/custom_accessory44
 vendor/etc/dts/custom_accessory48
-vendor/etc/dts/customer.cfg
 vendor/etc/dts/custom_speaker48
 vendor/etc/dts/default_accessory44
 vendor/etc/dts/default_accessory48
