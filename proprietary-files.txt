@@ -1385,14 +1385,14 @@ vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
 
 # Subsystem Vendor Daemon
-vendor/bin/ssdaemon_vendor
-vendor/etc/init/ssdaemon_vendor.rc
-vendor/lib64/libsensorapi_vendor.so
-vendor/lib64/libsensorcal_vendor_vendor.so
-vendor/lib64/libss-base.so
-vendor/lib64/libss-qti.so
-vendor/lib64/libvendorcfg_vendor.so
-vendor/lib64/vendor.zte.subsys@1.0.so
+#vendor/bin/ssdaemon_vendor
+#vendor/etc/init/ssdaemon_vendor.rc
+#vendor/lib64/libsensorapi_vendor.so
+#vendor/lib64/libsensorcal_vendor_vendor.so
+#vendor/lib64/libss-base.so
+#vendor/lib64/libss-qti.so
+#vendor/lib64/libvendorcfg_vendor.so
+#vendor/lib64/vendor.zte.subsys@1.0.so
 
 # Thermal
 vendor/bin/thermal-engine
