@@ -217,6 +217,10 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.8 \
     vendor.qti.hardware.display.allocator@1.0-service
 
+# Doze
+PRODUCT_PACKAGES += \
+    ZteDoze
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
