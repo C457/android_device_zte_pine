@@ -8,3 +8,4 @@
 # HALs
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service\.pine    u:object_r:hal_power_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.hardware\.zte\.wifi@1\.0-service       u:object_r:hal_wifi_default_exec:s0
+/(vendor|system/vendor)/bin/wifi-mac-generator                                u:object_r:wifi-mac-generator_exec:s0
