@@ -29,9 +29,9 @@
 #define FOD_HBM_ON 1
 #define FOD_HBM_OFF 0
 
-#define FOD_SENSOR_X 540
-#define FOD_SENSOR_Y 2017
-#define FOD_SENSOR_SIZE 216
+#define FOD_SENSOR_X 455
+#define FOD_SENSOR_Y 1920
+#define FOD_SENSOR_SIZE 173
 
 namespace {
 
