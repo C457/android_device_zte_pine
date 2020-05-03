@@ -1,1 +1,5 @@
 dontaudit qti_init_shell self:capability dac_override;
+
+# For configfs permission (Backported from 17.1 qc sepolicy)
+allow qti_init_shell configfs:dir rw_dir_perms;
+allow qti_init_shell configfs:file { rw_file_perms create };
