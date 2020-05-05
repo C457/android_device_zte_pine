@@ -14,3 +14,7 @@
 /(vendor|system/vendor)/bin/hw/vendor\.hardware\.zte\.wifi@1\.0-service                                    u:object_r:hal_wifi_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.biometrics\.fingerprint\.inscreen@1.0-service\.zte_pine    u:object_r:hal_lineage_fod_zte_exec:s0
 /(vendor|system/vendor)/bin/wifi-mac-generator                                                             u:object_r:wifi-mac-generator_exec:s0
+
+# Sysfs files
+/sys/devices/platform/cam_sync/video4linux/video[0-33]/name(/.*)?                                          u:object_r:sysfs_graphics:s0
+/sys/devices/platform/soc/soc:qcom,cam-req-mgr/video4linux/video[0-33]/name(/.*)?                          u:object_r:sysfs_graphics:s0

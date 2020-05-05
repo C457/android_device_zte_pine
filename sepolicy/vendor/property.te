@@ -1,3 +1,2 @@
-type json_web_default_prop, property_type;
 type vendor_fingerprint_prop, property_type;
 type vendor_nfc_prop, property_type;
