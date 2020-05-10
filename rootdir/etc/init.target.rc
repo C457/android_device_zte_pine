@@ -82,6 +82,8 @@ on fs
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
     restorecon_recursive /mnt/vendor/persist
+    restorecon_recursive --force /mnt/vendor/persist/sensors
+    restorecon_recursive --force /mnt/vendor/persist/data
     mkdir /mnt/vendor/persist/data 0700 system system
 
 on post-fs
