@@ -665,6 +665,17 @@ vendor/lib64/hw/fingerprint.gf95xx.so:vendor/lib64/hw/fingerprint.msmnile.so
 vendor/lib64/libgf_hal.so
 vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so
 
+# Fingerprint firmware - from pine GEN_NA_P855A03V1.0.0B13
+vendor/firmware/goodixfp.b00|21c286886e10e81264bafa541da6cd1207a323d9
+vendor/firmware/goodixfp.b01|12dc768dd25d11daf8827b73b556ba05ebb807b5
+vendor/firmware/goodixfp.b02|539d8c5a718171b11885abcda4b8e2da49af609c
+vendor/firmware/goodixfp.b03|a8d6e758c498f1ab41a6a7d0a4d178a2a4c7d17a
+vendor/firmware/goodixfp.b04|684e9af0831ae868b1b5adfe74cf369b4331e731
+vendor/firmware/goodixfp.b05|aed277eea4f0ab2cfd0f3a5de2311176b0b6dfdb
+vendor/firmware/goodixfp.b06|234d3b79dc179be708e56b2f3eb0a47c23d62fb5
+vendor/firmware/goodixfp.b07|2c55049aa412906a0009f47b05430ef296050e15
+vendor/firmware/goodixfp.mdt|aa4bea02f81e2a60abc2363a86fee7ffa8a9646c
+
 # FM
 vendor/lib/vendor.qti.hardware.fm@1.0.so
 vendor/lib64/vendor.qti.hardware.fm@1.0.so
