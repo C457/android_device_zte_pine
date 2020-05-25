@@ -144,6 +144,12 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 1073741824
 BOARD_USES_METADATA_PARTITION := true
 TARGET_COPY_OUT_VENDOR := vendor
 
+# Power
+TARGET_RPM_MASTER_STAT := "/d/rpmh/master_stats"
+TARGET_RPM_STAT := "/d/rpmh/stats"
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/wake_gesture"
+TARGET_WLAN_POWER_STAT := "/sys/kernel/wlan/power_stats"
+
 # Recovery
 BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true

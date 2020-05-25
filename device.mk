@@ -339,7 +339,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.pine
+    android.hardware.power@1.2-service-qti
 
 # QMI
 PRODUCT_PACKAGES += \
