@@ -37,6 +37,8 @@ service usbconfig /system/bin/usbconfig
 
 # For vts case testExportedPlatformPropertyIntegrity
 on boot
+    write /sys/class/android_usb/android0/f_mass_storage/lun/file "/system/etc/pcsuite.iso"
+    chmod 0444 /sys/class/android_usb/android0/f_mass_storage/lun/file
     setprop sys.usb.mtp.device_type 3
     setprop sys.usb.mtp.device_type ${sys.usb.mtp.device_type_tablet}
 
@@ -719,6 +721,33 @@ on property:sys.usb.ffs.ready=1 && property:sys.usb.config=rndis,diag,diag_mdm,a
     symlink /config/usb_gadget/g1/functions/diag.diag_mdm /config/usb_gadget/g1/configs/b.1/f3
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f4
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=rndis,diag,diag_mdm,adb,facmode && property:sys.usb.configfs=1
+    start adbd
+
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=rndis,diag,diag_mdm,adb,facmode && property:sys.usb.configfs=1
+    write /sys/class/android_usb/android0/forceSwitch 1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "rndis_diag_adb"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    rm /config/usb_gadget/g1/configs/b.1/f6
+    rm /config/usb_gadget/g1/configs/b.1/f7
+    rm /config/usb_gadget/g1/configs/b.1/f8
+    rm /config/usb_gadget/g1/configs/b.1/f9
+    write /config/usb_gadget/g1/idVendor 0x19d2
+    write /config/usb_gadget/g1/idProduct 0x615
+    write /config/usb_gadget/g1/functions/${vendor.usb.rndis.func.name}.rndis/rndis_class_id 1
+    write /config/usb_gadget/g1/functions/${vendor.usb.rndis.func.name}.rndis/wceis 1
+    symlink /config/usb_gadget/g1/functions/${vendor.usb.rndis.func.name}.rndis /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/diag.diag /config/usb_gadget/g1/configs/b.1/f2
+    symlink /config/usb_gadget/g1/functions/diag.diag_mdm /config/usb_gadget/g1/configs/b.1/f3
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f4
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    write /sys/class/android_usb/android0/forceSwitch 0
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=diag,diag_mdm && property:sys.usb.configfs=1

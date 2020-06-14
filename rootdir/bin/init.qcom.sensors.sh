@@ -31,8 +31,6 @@
 #
 start_sensors()
 {
-    sscrpcd_status=`getprop init.svc.vendor.sensors`
-
     chmod 755 /mnt/vendor/persist/sensors
 
     if [ ! -s /mnt/vendor/persist/sensors/sensors_settings ]; then
@@ -52,10 +50,12 @@ start_sensors()
     fi
 
     chown -h -R system.system /mnt/vendor/persist/sensors
+    chmod -h 664 /persist/sensors/sensors_settings
+    chown -h -R system.system /persist/sensors
     start vendor.sensors.qti
 
     # Only for SLPI
-    if [ -c /dev/msm_dsps -o -c /dev/sensors ] && [ -z "$sscrpcd_status" ]; then
+    if [ -c /dev/msm_dsps -o -c /dev/sensors ] ; then
         start vendor.sensors
     fi
 

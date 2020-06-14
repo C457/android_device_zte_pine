@@ -18,11 +18,39 @@ on init
     write /dev/cpuctl/cpu_hungry_app/cpu.rt_period_us 1000000
     write /dev/cpuctl/cpu_hungry_app/cpu.rt_runtime_us 950000
 
+on brd-post-fs
+    #add for after-sale-requirement
+    mkdir /mnt/vendor/persist/zstats 0755 system system
+    chown system system /sys/class/power_supply/bcl/serial_number
+    chown system system /sys/class/power_supply/bcl/authentic
+    chown system system /sys/class/power_supply/bcl/charge_now
+    chown system system /sys/class/power_supply/bcl/current_avg
+    chown system system /sys/class/power_supply/bcl/charge_full
+    chown system system /sys/class/power_supply/bcl/charge_full_design
+    chown system system /mnt/vendor/persist/zstats/capacity.dat
+    chown system system /mnt/vendor/persist/zstats/charging.dat
+    chown system system /mnt/vendor/persist/zstats/cycle.dat
+    chmod 0664  /mnt/vendor/persist/zstats/capacity.dat
+    chmod 0664  /mnt/vendor/persist/zstats/charging.dat
+    chmod 0664  /mnt/vendor/persist/zstats/cycle.dat
+
 on late-init
+    trigger brd-post-fs
     class_start brd_normal
     write /sys/module/zte_misc/parameters/screen_on 1
 
 on charger
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    #mount persist
+    mkdir /mnt/vendor/persist 0755 system system
+
+    wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist noatime nosuid nodev barrier=1
+
+    trigger brd-post-fs
+
     class_start brd_charger
 
 on boot
@@ -71,6 +99,7 @@ on boot
     chown system system /sys/module/zte_misc/parameters/demo_charging_policy
     chown system system /sys/module/zte_misc/parameters/expired_charging_policy
     chown system system /sys/module/zte_misc/parameters/screen_on
+    chown system system /sys/module/zte_misc/parameters/super_charge_mode
 
     #add for battery charging cycle counter
     chown system system /persist/charging_cycles
@@ -105,6 +134,14 @@ on boot
     chmod 0664 /sys/class/leds/aw9523b_led/brightness
     chown system system /sys/module/msm_thermal/freq_wmark/app_max_freq_limit
 
+    # add for cpuset cgroup
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-3,5-7
+    write /dev/cpuset/audio-app/cpus 0-3,5-7
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/restricted/cpus 0-3
+
     # add ssx1207 authority
     chown system system /dev/ssx1207
     chmod 0660 /dev/ssx1207
@@ -121,6 +158,10 @@ on boot
     chmod 0666 /proc/touchscreen/single_tap
     chown system system /sys/bus/platform/devices/synaptics_tcm.0/uevent
     chown 0666 /sys/bus/platform/devices/synaptics_tcm.0/uevent
+    chmod 0664 /proc/touchscreen/screen_state_interface
+    chown system system /proc/touchscreen/screen_state_interface
+    chmod 0664 /proc/touchscreen/aod_blind
+    chown system system /proc/touchscreen/aod_blind
     # add for touch self-test
     chown system system /sys/devices/virtual/tsp_fw/touchscreen/tpd_test_cmd
     chown system system /sys/devices/virtual/tsp_fw/touchscreen/tpd_test_filename
@@ -180,18 +221,6 @@ on boot
     insmod /sbin/jnl.ko
     insmod /sbin/ufsd.ko
 
-    #add for after-sale-requirement
-    mkdir /mnt/vendor/persist/zstats 0755 system system
-    chown system system /sys/class/power_supply/bcl/charge_full
-    chown system system /sys/class/power_supply/bcl/charge_full_design
-    chown system system /sys/class/power_supply/bcl/current_avg
-    chown system system /mnt/vendor/persist/zstats/capacity.dat
-    chown system system /mnt/vendor/persist/zstats/charging.dat
-    chown system system /mnt/vendor/persist/zstats/cycle.dat
-    chmod 0664 /mnt/vendor/persist/zstats/capacity.dat
-    chmod 0664 /mnt/vendor/persist/zstats/charging.dat
-    chmod 0664 /mnt/vendor/persist/zstats/cycle.dat
-
     # add for secureemode
     chmod 0644 /sys/module/audit/parameters/audit_printk_no_ratelimit
     chown system system /sys/module/audit/parameters/audit_printk_no_ratelimit
@@ -200,6 +229,7 @@ on fs
     # add carrier parti dir permission
     mkdir /carrier 0771 system system
     restorecon_recursive /carrier
+    restorecon_recursive --force /data/vendor/ramdump
 
 on post-fs-data
     mkdir /data/misc/dolby 0770 media audio
@@ -219,6 +249,13 @@ on post-fs-data
     setprop ro.vendor.dts.cfgpath "/vendor/etc/dts/"
     setprop vendor.dts.audio.allow_offload true
     # DTS_EAGLE END
+    # Set max_volt_mv for qcom charging binary
+    setprop persist.vendor.chg.max_volt_mv 9000
+    # open hvdcp logs
+    setprop persist.hvdcp.log_level 1
+    setprop persist.vendor.hvdcp.log_level 1
+    setprop persist.vendor.hvdcp2.log_level 1
+    setprop persist.vendor.cp.log_level 1
 
 on post-fs
    chmod 0771 /cache
@@ -239,6 +276,10 @@ on mmi && property:ro.bootmode=ffbm-02
     chmod 0666 /dev/i2c-8
     chown system system /dev/i2c-5
     chmod 0666 /dev/i2c-5
+    chown system system /dev/i2c-2
+    chmod 0666 /dev/i2c-2
+    chown system system /dev/i2c-9
+    chmod 0666 /dev/i2c-9
 
 #
 # zte: adb over wifi
@@ -259,6 +300,21 @@ on property:persist.odm.sys.dlctrl=0
 
 on property:persist.odm.sys.dlctrl=1
      write /sys/module/msm_poweroff/parameters/download_mode 1
+
+on property:persist.odm.sys.pmicregdump=0
+     write /sys/module/zte_misc/parameters/enable_to_dump_reg 0
+
+on property:persist.odm.sys.pmicregdump=1
+     write /sys/module/zte_misc/parameters/enable_to_dump_reg 1
+
+
+on property:persist.odm.sys.minidump=0
+     write /sys/kernel/dload/dload_mode full
+     write /sys/kernel/dload/emmc_dload 0
+
+on property:persist.odm.sys.minidump=1
+     write /sys/kernel/dload/dload_mode mini
+     write /sys/kernel/dload/emmc_dload 1
 
 on property:odm.force_warm_reset=0
     write /sys/module/msm_poweroff/parameters/restart_type 0
@@ -442,6 +498,20 @@ on property:sys.demochargingpolicy.protect=1
 on property:sys.demochargingpolicy.protect=0
     write /sys/module/zte_misc/parameters/demo_charging_policy 0
 
+on property:persist.sys.keeppower.anyway=1
+    setprop persist.sys.overtemp.enable 0
+    write /sys/module/zte_misc/parameters/demo_charging_policy 1
+    write /sys/module/zte_misc/parameters/policy_lowtemp_en 0
+on property:persist.sys.keeppower.anyway=0
+    setprop persist.sys.overtemp.enable 1
+    write /sys/module/zte_misc/parameters/demo_charging_policy 0
+    write /sys/module/zte_misc/parameters/policy_lowtemp_en 1
+
+on property:persist.sys.expiredchargingpolicy.protect=1
+    write /sys/module/zte_misc/parameters/expired_policy_en 1
+on property:persist.sys.expiredchargingpolicy.protect=0
+    write /sys/module/zte_misc/parameters/expired_policy_en 0
+
 on property:sys.driverchargingpolicy.protect=1
     write /sys/module/zte_misc/parameters/driver_charging_policy 1
 on property:sys.driverchargingpolicy.protect=0
@@ -457,13 +527,11 @@ service brd_normal /vendor/bin/battery_record_daemon normal
     class brd_normal
     user system
     group system root
-    oneshot
 
 service brd_charger /vendor/bin/battery_record_daemon charger
     class brd_charger
     user system
     group system root
-    oneshot
 
 service random_service /system/bin/sh  /system/etc/zte_random_shell_z.sh
     user root
