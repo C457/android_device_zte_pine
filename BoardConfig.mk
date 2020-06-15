@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+BUILD_BROKEN_DUP_RULES := true
+
 BOARD_VENDOR := zte
 
 DEVICE_PATH := device/zte/pine
@@ -25,13 +27,15 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo300
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a76
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a75
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a76
 
 TARGET_USES_64_BIT_BINDER := true
 
@@ -42,7 +46,7 @@ TARGET_NO_BOOTLOADER := true
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
-BOARD_KERNEL_CMDLINE += androidboot.vbmeta.avb_version=1.0
+BOARD_KERNEL_CMDLINE += androidboot.vbmeta.avb_version=1.0 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
@@ -56,15 +60,16 @@ BOARD_USES_QCOM_HARDWARE := true
 QCOM_BOARD_PLATFORMS += msmnile
 TARGET_BOARD_PLATFORM := msmnile
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno640
-TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
 TARGET_USES_QCOM_BSP := true
 
 # Properties
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+
+# APEX
+DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Audio
 AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
@@ -155,16 +160,10 @@ TARGET_USES_MKE2FS := true
 ENABLE_VENDOR_RIL_SERVICE := true
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RIL_VARIANT := caf
-
-# Root
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /mnt/vendor/persist:/persist \
-    /vendor/bt_firmware:/bt_firmware \
-    /vendor/dsp:/dsp \
-    /vendor/firmware_mnt:/firmware
+TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2018-08-05
+VENDOR_SECURITY_PATCH := 2020-02-01
 
 # Sepolicy
 include device/qcom/sepolicy/sepolicy.mk
@@ -173,12 +172,8 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
-
 # Treble
 BOARD_VNDK_VERSION := current
-PRODUCT_SHIPPING_API_LEVEL := 28
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
